@@ -48,6 +48,7 @@
   },
   "scripts": {
     "copy": "rimraf ./core; cp -R ../../material-ui/packages/material-ui/src ./core",
+    "copy-icons": "rimraf ./icons; cp -R ../../material-ui/packages/material-ui-icons/src ./icons",
     "extract": "babel-node ./src/extract.js"
   },
   "dependencies": {
