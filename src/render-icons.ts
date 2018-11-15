@@ -9,6 +9,18 @@ if (Fs.existsSync(Path.join(outputDirectory, 'reason'))) {
 }
 Fs.mkdirSync(Path.join(outputDirectory, 'reason'));
 
+function GenerateBinding(iconName : string): string {
+    return `
+[@bs.module "@material-ui/icons/${iconName}"]
+external reactClass: ReasonReact.reactClass = "default";
+
+let make = () =>
+    ReasonReact.wrapJsForReason(
+        ~reactClass,
+        ~props,
+        ~children
+    );`
+}
 
 const GetIcons = () => {
     Fs.readdir("./extract/icons", function( err, files) {
@@ -22,7 +34,7 @@ const GetIcons = () => {
         var filename = Path.basename(file,extension)
         if (extension == ".js") {
             var filenameReason = Path.join(outputDirectory,'reason', `${filename}.re`)
-            Fs.writeFileSync(filenameReason,"")
+            Fs.writeFileSync(filenameReason,GenerateBinding(filename))
         }
     });
 });
