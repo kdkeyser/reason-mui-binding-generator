@@ -5,7 +5,7 @@
     "scripts": {
         "bsb": "bsb -make-world;",
         "parse": "ts-node --files ./src/index.ts; ./node_modules/.bin/bsrefmt --in-place output/reason/*.re; bsb -make-world; ts-node --files ./src/helpers/clean-js-output.ts;",
-        "parse-icons": "ts-node --files ./src/render-icons.ts;",
+        "parse-icons": "ts-node --files ./src/render-icons.ts; ./node_modules/.bin/bsrefmt --in-place output-icons/reason/*.re; bsb -make-world; ts-node --files ./src/helpers/clean-js-output-icons.ts;",
         "ppx": "cd ./ppx-generator; yarn"
     },
     "repository": "git@github.com:jsiebern/reason-mui-binding-generator.git",
